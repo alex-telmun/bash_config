@@ -1,0 +1,50 @@
+ # PS1
+if [ "$(id -u)" -eq 0 ]; then
+  C_MAIN='\[\033[38;5;196m\]'
+  C_BMAIN="\[$(tput bold)\]\[\033[38;5;196m\]"
+else
+  C_MAIN="\[\033[38;5;38m\]"
+  C_BMAIN="\[$(tput bold)\]\[\033[38;5;202m\]"
+fi
+
+FancyX="\342\234\227"
+C_CLEAR="\[$(tput sgr0)\]"
+C_GREY="\[\033[38;5;250m\]"
+C_BLUE="\[\033[38;5;38m\]"
+C_GREEN="\[\033[38;5;34m\]"
+C_RED="\[\033[38;5;9m\]"
+C_PURPLE="\[\033[38;5;99m\]"
+C_YELLOW_GREY="\[\033[38;5;214m\]"
+
+function prompt_command {
+  local Last_Command=$?
+  local GIT_PS1=
+  local VENV_PS1=
+  # which doesn't even set an exit status
+  if type -P git >/dev/null; then
+    local GIT_BRANCH
+    local GIT_CLEAR
+    GIT_BRANCH=$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ ! -z ${GIT_BRANCH} ]]; then
+      GIT_STATUS=$(command git status --porcelain 2>/dev/null)
+      [[ -n ${GIT_STATUS} ]] && GIT_CLEAR=0 || GIT_CLEAR=1
+      if [ "${GIT_CLEAR}" -eq 0 ]; then
+        GIT_PS1="${C_GREY}(git:${C_RED}${GIT_BRANCH}${C_GREY})"
+      else
+        GIT_PS1="${C_GREY}(git:${C_GREEN}${GIT_BRANCH}${C_GREY})"
+      fi
+    fi
+  fi
+  if [[ ${Last_Command} == 0 ]]; then
+    LOGI_PS1="${C_GREEN}$"
+  else
+    LOGI_PS1="${C_RED}${FancyX}"
+  fi
+  [[ -n "${VIRTUAL_ENV}" ]] && VENV_PS1="${C_GREY}(venv:${C_GREEN}${VIRTUAL_ENV##*/}${C_GREY})"
+  export PS1="\n${C_GREY}[\A] ${C_GREEN}\w${C_CLEAR} [${C_MAIN}\u${C_CLEAR}@${C_GREY}\h${C_CLEAR}] ${GIT_PS1} ${VENV_PS1}\n ${LOGI_PS1}${C_CLEAR} "
+}
+PROMPT_COMMAND=prompt_command
+PS2=" ➜ "
+
+# vi:syntax=sh
+# vi:ft=sh

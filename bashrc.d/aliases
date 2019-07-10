@@ -1,0 +1,12 @@
+# Bash Aliases
+
+# Display work directory content
+alias la='command -p ls --color=always --group-directories-first -AlF'
+alias li='command -p ls --color=always --group-directories-first -AlFi'
+alias ls='command -p ls --color=always --group-directories-first -F'
+
+alias dus='du -h --max-depth=1 | sort -rh'
+alias ssh-key-copy='ssh-copy-id -i .ssh/id_rsa.pub'
+
+# vi:syntax=sh
+# vi:ft=sh
