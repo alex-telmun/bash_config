@@ -8,6 +8,7 @@ alias ls='command -p ls --color=always --group-directories-first -F'
 alias dus='du -h --max-depth=1 | sort -rh'
 alias ssh-key-copy='ssh-copy-id -i .ssh/id_rsa.pub'
 alias wtf='apropos'
+alias yu='yaourt -Syua'
 
 # vi:syntax=sh
 # vi:ft=sh
