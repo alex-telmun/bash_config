@@ -74,7 +74,13 @@ fi
 [[ -f ~/.bash_env ]] && . ~/.bash_env
 
 # Nice system information above prompt (uncomment if user neofetch)
-[[ -f /usr/bin/alsi ]] && alsi -n -t -u -c1=white -c2=blue
+if [[ -f /usr/bin/alsi ]]; then 
+  alsi -n -t -u -c1=white -c2=blue
+elif [[ -f /usr/bin/neofetch ]]; then
+  neofetch --config /etc/neofetch/config
+fi
+
+#[[ -f /usr/bin/alsi ]] && alsi -n -t -u -c1=white -c2=blue
 #[[ -f /usr/bin/neofetch ]] && neofetch --config /etc/neofetch/config
 
 
