@@ -55,17 +55,17 @@ function git() {
   esac
 }
 
-# Simple connect to remote desktop from CLI
+# Simple connect to remote desktop from CLI (Ignored when added to history!)
 function rdp () {
   command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$2 /p:$3 /d:$4 +clipboard &
 }
  
-export -f docker
-export -f gcat
-export -f git
 export -f ll
-export -f pgen
+export -f gcat
 export -f shareit
+export -f pgen
+export -f docker
+export -f git
 export -f rdp
 
 # vi:syntax=sh
