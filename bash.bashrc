@@ -1,5 +1,6 @@
-# ~/.bashrc
-## Shell common settings
+# /etc/bash.bashrc
+# Shell common settings
+# Maintainer Alexey A. Kravchenko (kravdex@yandex.ru)
 
 # Correct minor errors in the spelling of a directory component in a cd command
 shopt -s cdspell
@@ -30,18 +31,16 @@ export HISTSIZE=-1
 export HISTFILESIZE=500000
 
 # Ignore commands in history
-export HISTIGNORE="ls:pwd:clear"
+export HISTIGNORE="ls:pwd:clear:xfreerdp"
 
-### WTF??? ###
-# For X
-#if [ "$DISPLAY" ]; then
-  #xset -dpms                              # Disable DPMS (Enargy Star Technology)
-  #xset s off                              # Disable screensaver
-  #xset b off                              # Disable beeper
-#fi
-### WTF!!! ###
+# For X Window System
+if [ "$DISPLAY" ]; then
+  xset -dpms            # Disable DPMS (Enargy Star Technology)
+  xset s off            # Disable screensaver
+  xset b off            # Disable beeper
+fi
 
-## ENV settings
+# ENV settings
 export TERM="xterm-256color"
 export EDITOR="vim"
 export ALTERNATE_EDITOR="nano"
@@ -64,7 +63,7 @@ do
 done
 
 
-#Load bash_completion 
+# Load bash_completion 
 BASH_COMPLETION=/usr/share/bash-completion/bash_completion
 if [ -f  ${BASH_COMPLETION} ]
 then
@@ -74,20 +73,11 @@ fi
 # You can put anything to .bash_env (e.g. private aliases)
 [[ -f ~/.bash_env ]] && . ~/.bash_env
 
-# Display beautiful system information
+# Nice system information above prompt (uncomment if user neofetch)
 [[ -f /usr/bin/alsi ]] && alsi -n -t -u -c1=white -c2=blue
-# Uncomment if used neofetch
 #[[ -f /usr/bin/neofetch ]] && neofetch --config /etc/neofetch/config
 
-### WTF??? ###
-#if ! ssh-add -l 1>/dev/null 2>&1
-#then
-  #[[ -f ~/.ssh/id_rsa.pub ]] && ssh-add
-#fi
-### WTF!!! ###
 
-# sudo autocomplete
-# complete -cf sudo
 # vi:syntax=sh
 # vi:ft=sh
 
