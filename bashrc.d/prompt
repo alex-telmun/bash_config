@@ -41,7 +41,7 @@ function prompt_command {
     LOGI_PS1="${C_RED}${FancyX}"
   fi
   [[ -n "${VIRTUAL_ENV}" ]] && VENV_PS1="${C_GREY}(venv:${C_GREEN}${VIRTUAL_ENV##*/}${C_GREY})"
-  export PS1="\n${C_GREY}[\A] ${C_GREEN}\w${C_CLEAR} [${C_MAIN}\u${C_CLEAR}@${C_GREY}\h${C_CLEAR}] ${GIT_PS1} ${VENV_PS1}\n ${LOGI_PS1}${C_CLEAR} "
+  export PS1="\n${C_GREY}[\A] ${C_YELLOW_GREY}\w${C_CLEAR} [${C_MAIN}\u${C_CLEAR}@${C_GREY}\h${C_CLEAR}] ${GIT_PS1} ${VENV_PS1}\n ${LOGI_PS1}${C_CLEAR} "
 }
 PROMPT_COMMAND=prompt_command
 PS2=" ➜ "
