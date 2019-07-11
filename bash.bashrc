@@ -55,13 +55,21 @@ BASH_CONF_FILES="
                 aliases
                 functions
                 prompt
-
                 "
+
 # Source included configs
 for config in ${BASH_CONF_FILES}
 do
   [[ -f "${BASH_CONF_DIR}/${config}" ]] && . ${BASH_CONF_DIR}/${config}
 done
+
+
+#Load bash_completion 
+BASH_COMPLETION=/usr/share/bash-completion/bash_completion
+if [ -f  ${BASH_COMPLETION} ]
+then
+  . ${BASH_COMPLETION}
+fi
 
 # You can put anything to .bash_env (e.g. private aliases)
 [[ -f ~/.bash_env ]] && . ~/.bash_env
@@ -79,7 +87,7 @@ done
 ### WTF!!! ###
 
 # sudo autocomplete
-#complete -cf sudo
+# complete -cf sudo
 # vi:syntax=sh
 # vi:ft=sh
 
