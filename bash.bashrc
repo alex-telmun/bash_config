@@ -31,7 +31,7 @@ export HISTSIZE=-1
 export HISTFILESIZE=500000
 
 # Ignore commands in history
-export HISTIGNORE="ls:pwd:clear:xfreerdp"
+export HISTIGNORE="ls:pwd:clear:rdp"
 
 # For X Window System
 if [ "$DISPLAY" ]; then
