@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ### Bash configuration files
+=======
+Bash configuration files
+>>>>>>> 671b1b39b589c28e366071e8401b01840096360d
 ------------------------
 
 >Install:
