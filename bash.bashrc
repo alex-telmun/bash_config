@@ -62,7 +62,6 @@ do
   [[ -f "${BASH_CONF_DIR}/${config}" ]] && . ${BASH_CONF_DIR}/${config}
 done
 
-
 # Load bash_completion 
 BASH_COMPLETION=/usr/share/bash-completion/bash_completion
 if [ -f  ${BASH_COMPLETION} ]
@@ -80,10 +79,7 @@ elif [[ -f /usr/bin/neofetch ]]; then
   neofetch --config /etc/neofetch/config
 fi
 
-#[[ -f /usr/bin/alsi ]] && alsi -n -t -u -c1=white -c2=blue
-#[[ -f /usr/bin/neofetch ]] && neofetch --config /etc/neofetch/config
 
 
 # vi:syntax=sh
 # vi:ft=sh
-
