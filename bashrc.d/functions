@@ -34,7 +34,7 @@ function pgen {
     len=10
   fi
   #tr -dc A-Za-z0-9_ < /dev/urandom | head -c $len
-  tr -dc "[:graph:]" < /dev/urandom | head -c $len | tee - | xclip
+  tr -dc "[:graph:]" < /dev/urandom | head -c $len
 }
 
 # Additional commands for Docker
