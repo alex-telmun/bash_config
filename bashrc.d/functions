@@ -34,7 +34,7 @@ function pgen {
     len=10
   fi
   #tr -dc A-Za-z0-9_ < /dev/urandom | head -c $len
-  tr -dc "[:graph:]" < /dev/urandom | head -c $len
+  tr -dc "[:graph:]" < /dev/urandom | head -c $len | tee - | xclip
 }
 
 # Additional commands for Docker
@@ -55,9 +55,27 @@ function git() {
   esac
 }
 
-# Simple connect to remote desktop from CLI (Ignored when added to history!)
+# Soft connect to remote desktop from CLI
 function rdp () {
-  command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$2 /p:$3 /d:$4 +clipboard &
+  local USAGE="Usage: rdp [IP-address]"
+  if [ $# -eq 1 ]; then
+    if [[ (-n $1) && ($1 =~ ^([[:digit:]]{1,3}\.){3}[[:digit:]]{1,3}$) ]]; then
+      read -p "Your username: " username
+      read -p "Domain: " domain
+      read -t 10 -sp "Password: " password
+      if [ -z $domain ]; then
+        command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$username /p:$password +clipboard &
+      else
+        command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$username /p:$password /d:$domain +clipboard &
+      fi
+    else
+      echo $USAGE
+      exit 1
+    fi
+  else
+    echo $USAGE
+    exit 1
+  fi
 }
  
 export -f ll
