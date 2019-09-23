@@ -64,9 +64,9 @@ function rdp () {
       read -p "Domain: " domain
       read -t 10 -sp "Password: " password
       if [ -z $domain ]; then
-        command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$username /p:$password +clipboard &
+        command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$username /p:$password +clipboard 
       else
-        command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$username /p:$password /d:$domain +clipboard &
+        command xfreerdp /size:1920x1040 /gfx:AVC444 /v:$1 /u:$username /p:$password /d:$domain +clipboard 
       fi
     else
       echo $USAGE
