@@ -79,7 +79,10 @@ elif [[ -f /usr/bin/neofetch ]]; then
   neofetch --config /etc/neofetch/config
 fi
 
-
+# Load users scripts in PATH
+if [ -d $HOME/bin ]; then
+  chmod 700 $HOME/bin && export PATH="${PATH}:${HOME}/bin"
+fi
 
 # vi:syntax=sh
 # vi:ft=sh
