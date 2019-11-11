@@ -65,6 +65,7 @@ function rdp () {
       read -p "Domain: " domain
       read -t 10 -sp "Password: " password
       if [ -z $domain ]; then
+<<<<<<< HEAD
         command xfreerdp /size:1920x1000 /gfx:AVC444 /v:$1 /u:$username /p:$password +clipboard "${@:2}"
       else
         command xfreerdp /size:1920x1000 /gfx:AVC444 /v:$1 /u:$username /p:$password /d:$domain +clipboard "${@:2}"
@@ -78,6 +79,41 @@ function rdp () {
     return 1
   fi
 }
+
+# Checking commands in PATH
+function inpath () {
+  local result
+  for cmd in $@ ; do
+    if [ "$cmd" != "" ]; then
+      if [ "${cmd%${cmd#?}}" = "/" ]; then # Verify absolute or relative path
+        if [ -x "$cmd" ]; then
+          local directory="${cmd%/*}"
+          result=0
+        else
+          result=1
+        fi
+      else
+        local oldIFS=$IFS
+        IFS=":"
+        for directory in $PATH ; do
+          if [ -x $directory/$cmd ]; then
+            result=0
+            break # If a command is found, remaining paths are not checked
+          else
+            result=2
+          fi
+        done
+        IFS=$oldIFS
+      fi
+    fi
+    case $result in
+      0) echo "$cmd found in PATH: $directory" ;;
+      1) echo "$cmd not found or not executable" ;;
+      2) echo "$cmd not found in PATH" ;;
+    esac
+  done
+}
+
  
 export -f ll
 export -f gcat
@@ -86,6 +122,7 @@ export -f pgen
 export -f docker
 export -f git
 export -f rdp
+export -f inpath
 
 # vi:syntax=sh
 # vi:ft=sh
