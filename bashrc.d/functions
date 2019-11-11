@@ -42,6 +42,7 @@ function docker() {
   case "$1" in
     "di") command docker rmi --force $(docker images -aq);; # Delete all images
     "dc") command docker rm --force $(docker ps -aq);; # Delete all containers
+    "ip") command docker inspect --format {{.NetworkSettings.IPAddress}} "${@:2}";;
     *   ) command docker "$@";;
   esac
 }
@@ -64,17 +65,17 @@ function rdp () {
       read -p "Domain: " domain
       read -t 10 -sp "Password: " password
       if [ -z $domain ]; then
-        command xfreerdp /size:1900x1000 /gfx:AVC444 /v:$1 /u:$username /p:$password +clipboard "${@:2}"
+        command xfreerdp /size:1920x1000 /gfx:AVC444 /v:$1 /u:$username /p:$password +clipboard "${@:2}"
       else
-        command xfreerdp /size:1900x1000 /gfx:AVC444 /v:$1 /u:$username /p:$password /d:$domain +clipboard "${@:2}"
+        command xfreerdp /size:1920x1000 /gfx:AVC444 /v:$1 /u:$username /p:$password /d:$domain +clipboard "${@:2}"
       fi
     else
-      echo $USAGE
-      exit 1
+      echo $USAGE >&2
+      return 1
     fi
   else
-    echo $USAGE
-    exit 1
+    echo $USAGE >&2
+    return 1
   fi
 }
  
