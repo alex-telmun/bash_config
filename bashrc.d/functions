@@ -42,7 +42,7 @@ function docker() {
   case "$1" in
     "di") command docker rmi --force $(docker images -aq);; # Delete all images
     "dc") command docker rm --force $(docker ps -aq);; # Delete all containers
-    "ip") command docker inspect --format {{.NetworkSettings.IPAddress}} "${@:2}";;
+    "cip") command docker inspect --format {{.NetworkSettings.IPAddress}} "${@:2}";;
     *   ) command docker "$@";;
   esac
 }
