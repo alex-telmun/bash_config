@@ -33,6 +33,9 @@ export HISTFILESIZE=500000
 # Ignore commands in history
 export HISTIGNORE="ls:pwd:clear:rdp"
 
+#
+export GPG_TTY=$(tty)
+
 # For X Window System
 if [ "$DISPLAY" ]; then
   xset -dpms            # Disable DPMS (Enargy Star Technology)
