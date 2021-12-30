@@ -16,7 +16,13 @@ alias tt='tail -f -n 25'
 alias out='pastebinit -b paste.debian.net -f bash | xclip'
 
 # Only for Arch Linux
-alias yu='yaourt -Syua'
+alias ya='yay -Syu'
+
+# Projects navigation
+alias pp='cd $HOME/projects/petprojects'
+alias p='cd $HOME/projects'
+alias gh='cd $HOME/projects/github'
+alias nous='cd $HOME/projects/nous'
 
 # vi:syntax=sh
 # vi:ft=sh
