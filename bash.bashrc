@@ -84,5 +84,16 @@ if [ -d $HOME/bin ]; then
   chmod 700 $HOME/bin && export PATH="${PATH}:${HOME}/bin"
 fi
 
+if [ -d $HOME/.local/bin ]; then
+  export PATH="${PATH}:${HOME}/.local/bin"
+fi
+
+if [ -f ~/.kube/config_list ]; then
+  KUBECONFIG=$(paste -sd ':' ~/.kube/config_list)
+  export KUBECONFIG
+fi
+
+[[ -f /usr/bin/terraform ]] && complete -C /usr/bin/terraform terraform
+
 # vi:syntax=sh
 # vi:ft=sh
